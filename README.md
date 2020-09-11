@@ -49,10 +49,10 @@ onLoad() {
 
 |   参数名  | 说明  |
 |--- | --- |
-|  map  | 当前vue的示例对象,用来修改和添加属性 |
-|  origin  |  起点标记点(传入一个map的markers属性对象) |
+|  map  | 当前vue的实例对象,用来修改和添加属性 |
+|  origin  |  起点标记点(传入一个 map组件 的markers属性对象) |
 |  destination  |  终点(同上) |
-|  line  |  绘制路线的参数(传入一个map的polyline属性对象) |
+|  line  |  绘制路线的参数(传入一个map组件 的polyline属性对象) |
 
-####注意
+#### 注意
 绘制路线后，地图的中心点会修改为起点的坐标
