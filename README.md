@@ -4,8 +4,8 @@
 ####  注意
 绘制路线后，地图的中心点会修改为起点的坐标，  
 支持 App-nvue 2.1.5+、微信小程序、百度小程序  
-详细配置和使用请参考[官方文档](https://uniapp.dcloud.io/component/map)
-
+详细配置和使用请参考[官方文档](https://uniapp.dcloud.io/component/map)  
+修改调用的接口后请传入自己的回调方法来解析数据，显示路线
 
 ## 完整示例
 ```html
@@ -81,6 +81,8 @@
     map.setKey(key);
     map.setUrl(url);
 
+    //注意 修改调用的接口后请传入自己的回调方法来解析数据
+    route.requestRoute(origin,destination)//该方法返回一个Promise并返回接口的数据res
 ```
 
 #####3.初始化地图和参数

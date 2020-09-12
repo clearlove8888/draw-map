@@ -30,42 +30,30 @@ Route.prototype.drawRoute = function(map,origin,destination,line={
 	markers.push(origin);
 	markers.push(destination);
 	
-	uni.request({
-		url: url,
-		method: 'GET',
-		data: {
-			"origin": origin.longitude+","+origin.latitude,
-			"destination": destination.longitude+","+destination.latitude,
-			"key":key
-		},
-		success: res => {
-			line.points || (line.points= []);
-			
-			res.data.route.paths.map(item=>{
-				item.steps.map(path=>{
-					path.tmcs.map(tmcs=>{
-						tmcs.polyline.split(";").map(loacl=>{
-							const longitude = loacl.split(",")[0];
-							const latitude = loacl.split(",")[1];
-							line.points.push({latitude: latitude, longitude: longitude});
-						})
-					});
-				})
-			});
-			
+	this.requestRoute(origin,destination).then(res=>{
+		line.points || (line.points= []);
+		
+		res.data.route.paths.map(item=>{
+			item.steps.map(path=>{
+				path.tmcs.map(tmcs=>{
+					tmcs.polyline.split(";").map(loacl=>{
+						const longitude = loacl.split(",")[0];
+						const latitude = loacl.split(",")[1];
+						line.points.push({latitude: latitude, longitude: longitude});
+					})
+				});
+			})
+		});
+		
+		polyline.push(line);
+		Object.assign(map,{
+			latitude: origin.latitude,
+			longitude: origin.longitude,
 			// todo 通过距离 计算 scale 的值
-			polyline.push(line);
-			Object.assign(map,{
-				latitude: origin.latitude,
-				longitude: origin.longitude,
-				markers,
-				polyline
-			});
-		},
-		fail: () => {
-		},
-		complete: () => {
-		}
+			//scale: 15
+			markers,
+			polyline
+		});
 	});
 }
 
@@ -78,6 +66,28 @@ Route.prototype.initMap = function(object){
 				polyline: [],
 				scale: 15
 			});
+}
+
+Route.prototype.requestRoute = function(origin,destination){
+	
+	const {url,key} = this;
+	return new Promise((resolve,reject)=>{
+		uni.request({
+			url: url,
+			method: 'GET',
+			data: {
+				"origin": origin.longitude+","+origin.latitude,
+				"destination": destination.longitude+","+destination.latitude,
+				"key":key
+			},
+			success: res => {
+				resolve(res);
+			},
+			fail: (err) => {
+				reject(err);
+			}
+		});
+	})
 }
 
 export default new Route();
