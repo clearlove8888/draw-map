@@ -1,12 +1,12 @@
 #### 项目简介
 使用原生的uni-app map组件，绘制带方向的地图路线。
 
-#### 方法
-- 1.引入js文件
+#### 使用方法
+##### 1.引入js文件
 ```javascript
-    import route from '../../plugins/draw-map/draw-map.js';
+    import map from '../../plugins/draw-map/draw-map.js';
 ```
-- 2.修改配置
+##### 2.修改配置
 ```javascript
     //高德地图开发者key 修改为自己的
     const key ="5ee36bc9cb2c613c6fd00d93c544cad8";
@@ -17,7 +17,7 @@
 
 ```
 
-- 3.初始化地图和参数
+#####3.初始化地图和参数
 ```html
 <map :latitude="latitude" :longitude="longitude" :markers="markers" :polyline="polyline" :scale="scale">
 </map>
@@ -32,7 +32,7 @@
     			}
             }
 ```
-- 4.传入参数绘制地图上的路线
+##### 4.传入参数绘制地图上的路线
 ```html
 onLoad() {
 			map.drawRoute(this,{
@@ -58,7 +58,7 @@ onLoad() {
 |  destination  |  终点标记点 (同上) |
 |  line  |  绘制路线对象(传入一个map组件 的polyline属性对象) |
 
-#### 完整示例
+## 完整示例
 ```html
 <template>
     <view>
