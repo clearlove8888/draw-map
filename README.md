@@ -22,7 +22,7 @@
 </template>
 
 <script>
-	import map from '../../plugins/draw-map/draw-map.js';
+	import route from '../../plugins/draw-map/draw-map.js';
 	
     export default {
         data() {
@@ -38,19 +38,19 @@
         },
 		onLoad() {
 			const origin ={
-			    latitude: 39.90909,
-			    longitude: 116.434307,
+			    latitude: 25.09591,
+			    longitude: 104.872858,
 				//起点的icon
 			    iconPath: '../../static/1.png',
 			};
 			const destination = {
-			    latitude: 39.90816,
-			    longitude: 116.434446,
+			    latitude: 25.106936,
+			    longitude: 104.916211,
 				//终点的icon
 			    iconPath: '../../static/2.png',
 			};
 			
-			map.drawRoute(this,origin,destination);
+			route.drawRoute(this,origin,destination);
 		}
     }
 </script>
