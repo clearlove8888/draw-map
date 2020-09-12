@@ -1,12 +1,31 @@
-import {key,url} from './config.js';
+function Route(){
+	this.key = "5ee36bc9cb2c613c6fd00d93c544cad8";
+	this.url = 'https://restapi.amap.com/v3/direction/driving';
+	this.type = "";
+}
 
-const drawRoute =(map,origin,destination,line={
+Route.prototype.setKey= function(key){
+	this.key=key;
+}
+Route.prototype.setUrl = function(url){
+	this.url=url;
+}
+Route.prototype.setType = function(type){
+	this.type = type;
+}
+
+Route.prototype.initParam = function(param){
+	Object.assign(this,{...param});
+}
+
+Route.prototype.drawRoute = function(map,origin,destination,line={
 				 arrowLine: true,
 				'points':[],
 				 color:'#f00',
 				 width:10
-			})=>{
-				
+			}){
+	const {url,key,type="driving"} = this;
+	
 	const {markers=[],polyline=[]} = map;
 	markers.push(origin);
 	markers.push(destination);
@@ -39,7 +58,6 @@ const drawRoute =(map,origin,destination,line={
 			Object.assign(map,{
 				latitude: origin.latitude,
 				longitude: origin.longitude,
-				scale: 15,
 				markers,
 				polyline
 			});
@@ -51,4 +69,15 @@ const drawRoute =(map,origin,destination,line={
 	});
 }
 
-export default drawRoute;
+Route.prototype.initMap = function(object){
+	console.log(object);
+	Object.assign(object,{
+				latitude: 39.90909,
+				longitude: 116.434307,
+				markers: [],
+				polyline: [],
+				scale: 15
+			});
+}
+
+export default new Route();

@@ -1,6 +1,5 @@
 <template>
     <view>
-        <!-- <page-head :title="title"></page-head> -->
         <view class="uni-common-mt">
             <view>
                 <map :latitude="latitude" :longitude="longitude" :markers="markers" :polyline="polyline" :scale="scale">
@@ -10,8 +9,9 @@
         </view>
     </view>
 </template>
+
 <script>
-	import drawRoute from '../../plugins/draw-map/draw-map.js';
+	import map from '../../plugins/draw-map/draw-map.js';
 	
     export default {
         data() {
@@ -26,24 +26,27 @@
         methods: {
         },
 		onLoad() {
-			drawRoute(this,{
+			const origin ={
 			    latitude: 39.90909,
 			    longitude: 116.434307,
 				//起点的icon
 			    iconPath: '../../static/1.png',
-			},{
+			};
+			const destination = {
 			    latitude: 39.90816,
 			    longitude: 116.434446,
 				//终点的icon
 			    iconPath: '../../static/2.png',
-			})
+			};
+			
+			map.drawRoute(this,origin,destination);
 		}
     }
 </script>
 <style>
     map {
         width: 100%;
-        height: 800upx;
+        height: 600rpx;
     }
     .cover{
 		display: flex;
