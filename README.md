@@ -2,7 +2,7 @@
 使用原生的uni-app map组件，绘制带方向的地图路线。
 
 ####  注意
-请先自行注册一个高德应用的key **选择服务平台的时候请选择web服务** 地址 https://console.amap.com/dev/key/app
+请先自行注册一个高德应用的key **选择服务平台的时候请选择web服务** 地址 https://console.amap.com/dev/key/app  
 绘制路线后，地图的中心点会修改为起点的坐标，  
 支持 App-nvue 2.1.5+、微信小程序、百度小程序  
 详细配置和使用请参考[官方文档](https://uniapp.dcloud.io/component/map)  
