@@ -78,7 +78,7 @@
 ##### 2.修改配置
 ```javascript
     //高德地图开发者key 修改为自己的
-    const key ="5ee36bc9cb2c613c6fd00d93c544cad8";
+    const key ="";
     //高德api接口
     const url =  'https://restapi.amap.com/v3/direction/driving';
     map.setKey(key);
