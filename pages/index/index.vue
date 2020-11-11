@@ -12,7 +12,7 @@
 
 <script>
 	import route from '../../plugins/draw-map/draw-map.js';
-	
+
     export default {
         data() {
             return {
@@ -26,6 +26,8 @@
         methods: {
         },
 		onLoad() {
+            // 这里填自己的高德地图应用中key 选择服务平台的时候请选择web服务
+            route.setKey("自己的key");
 			const origin ={
 			    latitude: 25.09591,
 			    longitude: 104.872858,
@@ -38,7 +40,7 @@
 				//终点的icon
 			    iconPath: '../../static/2.png',
 			};
-			
+
 			route.drawRoute(this,origin,destination);
 		}
     }

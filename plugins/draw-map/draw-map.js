@@ -1,5 +1,5 @@
 function Route(){
-	this.key = "5ee36bc9cb2c613c6fd00d93c544cad8";
+	this.key = "";
 	this.url = 'https://restapi.amap.com/v3/direction/driving';
 	this.type = "";
 }
@@ -25,14 +25,14 @@ Route.prototype.drawRoute = function(map,origin,destination,line={
 				 width:10
 			}){
 	const {url,key,type="driving"} = this;
-	
+
 	const {markers=[],polyline=[]} = map;
 	markers.push(origin);
 	markers.push(destination);
-	
+
 	this.requestRoute(origin,destination).then(res=>{
 		line.points || (line.points= []);
-		
+
 		res.data.route.paths.map(item=>{
 			item.steps.map(path=>{
 				path.tmcs.map(tmcs=>{
@@ -44,7 +44,7 @@ Route.prototype.drawRoute = function(map,origin,destination,line={
 				});
 			})
 		});
-		
+
 		polyline.push(line);
 		Object.assign(map,{
 			latitude: origin.latitude,
@@ -69,7 +69,7 @@ Route.prototype.initMap = function(object){
 }
 
 Route.prototype.requestRoute = function(origin,destination){
-	
+
 	const {url,key} = this;
 	return new Promise((resolve,reject)=>{
 		uni.request({
